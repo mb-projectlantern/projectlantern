@@ -1,0 +1,16 @@
+node_modules/
+.wrangler/
+.dev.vars*
+.env*
+*.sqlite*
+test-output/
+wrangler.local.jsonc
+life-os-secrets.xml
+dashboard-credential.xml*
+.projectlantern/
+private-backups/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx

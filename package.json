@@ -1,0 +1,16 @@
+{
+  "name": "project-lantern-life-os-poc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test life-os/test/*.test.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "wrangler": "4.136.3"
+  }
+}

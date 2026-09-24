@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "project-lantern-life-os-poc",
+  "main": "life-os/worker.js",
+  "compatibility_date": "2026-09-24",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": true },
+  "vars": {
+    "GITHUB_REPOSITORY_ID": "1385602767",
+    "GITHUB_ACTOR": "mb-projectlantern"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "life-os-poc",
+    "database_id": "d4a11f01-94c3-452c-98f9-d4e25926c75c",
+    "migrations_dir": "life-os/migrations"
+  }]
+}
