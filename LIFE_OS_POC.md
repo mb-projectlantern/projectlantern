@@ -16,7 +16,35 @@ The user explicitly chose this preview domain for the POC instead of migrating D
 
 Deployment evidence: D1 `d4a11f01-94c3-452c-98f9-d4e25926c75c`; private repository webhook `684955308`; [synthetic issue 1](https://github.com/mb-projectlantern/lifeos-results/issues/1) stored as result `9ff8d38f-e2bc-40f3-bda3-d3c61e58824f` with external ID `github:1385602767:1`. Direct synthetic POST returned 201 with result `28047319-ac08-439c-8e3e-64b2e760b33d`. Anonymous deployed page access returned 401. Initial webhook TLS activation failure and sub-millisecond timestamp validation failure were diagnosed and corrected, then the original event was redelivered successfully.
 
-On the deployment Windows account, run `./life-os/access.ps1 -CopyPassword` and paste the password into the browser's HTTP login prompt; user is `lantern`. The script reads Windows DPAPI-encrypted values from `%LOCALAPPDATA%/ProjectLantern/life-os-secrets.xml`, outside both repositories. It never copies the ingestion or webhook token. No production secret is present in source control.
+On the deployment Windows account, run the following command and paste the password into the browser's HTTP login prompt; username is **`lantern`**. Execution-policy bypass applies only to this process and does not change normal Windows settings.
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\access.ps1" -CopyPassword
+```
+
+The script verifies the password against the deployed HTTPS dashboard before copying it. The dashboard-only credential is Windows DPAPI-encrypted at `C:\Users\mattb\AppData\Local\ProjectLantern\dashboard-credential.xml`, outside both repositories. Other Windows users resolve their own LocalApplicationData directory. The script can also read the original `life-os-secrets.xml` for compatibility. It never copies ingestion or webhook tokens. Clear the clipboard after pasting; clipboard history/sync may retain passwords.
+
+### Dashboard setup and recovery
+
+The original deployment created `life-os-secrets.xml` through a one-time local setup command, but the checked-in access script assumed that file already existed. There was no reproducible bootstrap or useful missing-file handling. During this repair, the original file was present and decryptable under `MATT_HOMEPC\mattb`; its password already authenticated successfully. The previously reported missing-path condition could not be reproduced, so its exact historical cause is unknown. The repair recovered that same password into the dashboard-only file; it did not generate a password or change Cloudflare authentication. The original secrets file was left unchanged.
+
+For a fresh Windows machine or a missing/unreadable credential file, run:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\initialize-access.ps1"
+```
+
+Adjust the checkout path on another machine. Initialization checks the current credential, an interrupted reset's encrypted `.pending` file, and the legacy deployment file. It recovers a candidate only after it authenticates to the live dashboard. If none works, it prompts for the existing password with hidden input (retrieve it from your password manager or original machine), verifies it, creates the directory, and saves an encrypted dashboard-only credential. DPAPI files are tied to the Windows account and machine that created them; copying the XML to a new machine is not a password transfer mechanism. Cloudflare can list secret names but cannot return their values. Normal initialization never changes Cloudflare.
+
+If the password is genuinely lost after checking your original machine and password manager, install the pinned dependencies and sign into the existing Cloudflare account with Wrangler, then explicitly request a reset:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\initialize-access.ps1" -ResetPassword
+```
+
+Recovery still runs first. Only if no saved credential authenticates does this create a cryptographically random password, save an encrypted pending copy, confirm the existing dashboard secret names in Cloudflare, and update **only `DASHBOARD_PASSWORD`** through Wrangler stdin. It keeps username `lantern`, verifies the deployed password, and saves the canonical credential. It does not deploy Worker code or update ingestion/webhook secrets. If interrupted, retain the `.pending` file and rerun initialization; it checks whether that password is already active before attempting another reset. A network failure alone is not a reason to request a password reset.
+
+Credential regression checks: `node --test life-os/test/credentials.test.js` on Windows. Eight tests cover missing/corrupt files, legacy recovery, fresh import, rejected passwords, reset ordering, interrupted resets, and pending recovery. They use real Windows PowerShell/DPAPI with mocked network, Cloudflare, and clipboard boundaries. Separately, the actual `access.ps1 -CopyPassword` command was run under Windows PowerShell 5.1: its clipboard value matched the original saved password and authenticated to the deployed dashboard (HTTP 200). The working ingestion pipeline was neither modified nor retested for this repair. Final browser step: open the protected URL and enter `lantern` with the copied password.
 
 | Test | Current evidence | Classification |
 | --- | --- | --- |
@@ -90,6 +118,8 @@ D1 was chosen for atomic deduplication, indexed newest-first reads, and persiste
 - `wrangler.jsonc`, `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`: deployment tooling with pinned Wrangler.
 - `.gitignore`: excludes dependencies, local secrets, preview data, and logs.
 - `LIFE_OS_POC.md`: audit, setup, exact experiments, and evidence.
+- `life-os/access.ps1`, `life-os/initialize-access.ps1`, `life-os/credentials.ps1`: verified dashboard credential retrieval, recovery/bootstrap, and encrypted local storage.
+- `life-os/test/credentials.test.js`: isolated Windows credential workflow regression tests.
 
 The repository has a source directory named `life-os`, but no static `life-os/index.html` or public result file. The actual route is served by the Worker. Merging source into Pages alone cannot deploy the private dashboard.
 
@@ -113,7 +143,7 @@ pnpm exec wrangler secret put GITHUB_WEBHOOK_SECRET
 pnpm exec wrangler deploy
 ```
 
-Enter secret values at CLI prompts or use a protected secret manager; never put them in command arguments, source, issues, task prompts, or commits. Wrangler stores its own OAuth credential outside these repositories. Use independently generated high-entropy values for the password and both tokens (32 random bytes encoded as hex is sufficient). `DASHBOARD_USER` should be simple ASCII without a colon. Worker refuses service when core credentials are absent/too short.
+These deployment commands are for initial infrastructure setup; do not rerun them to repair local dashboard access. Enter secret values at CLI prompts or use a protected secret manager; never put them in command arguments, source, issues, task prompts, or commits. Wrangler stores its own OAuth credential outside these repositories. Use independently generated high-entropy values for the password and both tokens (32 random bytes encoded as hex is sufficient). Set `DASHBOARD_USER` to `lantern`. Worker refuses service when core credentials are absent/too short. After initial deployment, run `initialize-access.ps1` as described above and enter the same dashboard password to provision the encrypted local credential. Keep that password in a password manager for another machine; deployment alone does not create a local DPAPI file.
 
 | Setting | Where / purpose |
 | --- | --- |
