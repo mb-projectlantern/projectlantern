@@ -1,140 +1,168 @@
-# Life OS / ChatGPT integration POC
+# Life OS POC — accepted baseline
 
-Audit and implementation date: 2026-09-24. This is a small integration experiment, not the broader Life OS.
+**POC STATUS: WORKAROUND SUCCESS — ACCEPTED**
 
-## Outcome and evidence
+Acceptance and lock-down date: **2026-09-24**. Branch: `lifeos-poc`. Tag: `lifeos-poc-v1.0-accepted`. Resolve the exact verified commit with `git rev-parse 'lifeos-poc-v1.0-accepted^{commit}'`. Never move or reuse this tag. [Draft PR #1](https://github.com/mb-projectlantern/projectlantern/pull/1) remains unmerged. This is the authoritative technical record; `LIFE_OS_V1_HANDOFF.md` is a technical handoff, not a V1 specification.
 
-**WORKAROUND SUCCESS.** A normal ChatGPT scheduled task completed unattended and created [issue 3](https://github.com/mb-projectlantern/lifeos-results/issues/3). Its signed webhook automatically produced D1 result `ff6756ff-3347-4ae2-bc3b-73ba63d971b4`, external ID `github:1385602767:3`, received at `2026-09-24T14:17:36.498Z`. The authenticated dashboard API returns that result. [Actual ChatGPT experiment and completed task](https://chatgpt.com/c/6ab52e2a-0d14-83e8-b4d5-bfec2d23c98e) shows the same issue URL. No manual result transfer, per-run approval, Codex automation, or OpenAI API inference participated in that execution.
+## Purpose and original hypothesis
 
-The scheduled time was 14:15:04 UTC; recorded execution was 14:17:29.235 UTC, about 2m25s late. The task is now completed and will not recur. This proves the scheduled transport path with **synthetic** content, not AMZN analysis quality or five-day reliability. The five-day AMZN prompt below is provided but has not been scheduled. A direct ChatGPT-to-Life-OS integration was not implemented or established.
+Determine whether normal ChatGPT, using the existing subscription and scheduled tasks, can perform work unattended and automatically persist/display its result in Life OS without manual transfer or paid OpenAI API inference. A private GitHub issue is the intentional POC bridge. This is **not** direct ChatGPT-to-Life-OS API integration. Experimentation is complete. No V1 functionality is included.
 
-Normal interactive ChatGPT also created [issue 2](https://github.com/mb-projectlantern/lifeos-results/issues/2), which automatically reached D1 as result `699ca570-9a43-49e6-89ef-0f95575f5f1d` at `2026-09-24T14:11:41.447Z`.
+## Final live acceptance test
 
-Live protected POC: https://project-lantern-life-os-poc.mb-projectlantern.workers.dev/life-os/
+| Field | Accepted evidence |
+| --- | --- |
+| Date / test | 2026-09-24 / AMZN 24-Hour Brief |
+| Type | Live scheduled ChatGPT research execution |
+| User interaction | Natural-language request from a **new normal ChatGPT conversation**, naturally referencing LIFE_OS |
+| Approximate request | “Five minutes from now, research AMZN for developments from the last 24 hours. Check current/recent market information and credible news sources. Identify the single most important development affecting Amazon, if one exists. Also integrate this with my LIFE_OS system.” |
+| Plumbing specified by user | None: no repository, JSON, schema, webhook, Cloudflare, storage, endpoint, or dashboard instructions |
+| Execution | Unattended; live research/reasoning; COMPLETED; NEEDS ATTENTION |
+| Executed | Approximately 10:53:21 AM Eastern; stored timestamp `2026-09-24T14:53:21.723Z` |
+| Received | Approximately 10:53:24 AM Eastern; server timestamp `2026-09-24T14:53:24.024Z` |
+| Handoff | Approximately 3 seconds; precise timestamp difference 2.301 seconds. One observation, not a latency guarantee. |
+| Private issue | [lifeos-results #4](https://github.com/mb-projectlantern/lifeos-results/issues/4), created `2026-09-24T14:53:22Z` |
+| External identifier | `github:1385602767:4` |
+| Persistent record | `2955e18f-1baa-4588-9a70-7203f15232fe`; `processing_status=stored` |
+| Webhook | issues/opened returned HTTP 201; delivery timestamp `2026-09-24T14:53:24.419Z` |
+| Manual transfer / OpenAI API inference | NONE / NONE |
+| Result | SUCCESS; user confirmed automatic display in the protected dashboard |
 
-The user explicitly chose this preview domain for the POC instead of migrating DNS. The original `www.projectlantern.net` site and DNS stay unchanged. `/life-os/` is live on the preview origin; it is not live on the original domain.
+The user confirmed that ChatGPT resolved LIFE_OS, scheduled/executed the task unattended, researched current/recent market context and Reuters reporting, and supplied a conclusion, source URLs, publication/event timing, caveats, and execution timestamp. The lock-down audit independently compared the existing issue's summary/details to the stored record and verified authenticated retrieval. Private research text/source URLs are not copied into this public repository; only user-authorized acceptance metadata is recorded. The new acceptance conversation URL was not supplied; the issue and persistent record are durable technical evidence.
 
-Deployment evidence: D1 `d4a11f01-94c3-452c-98f9-d4e25926c75c`; private repository webhook `684955308`; [synthetic issue 1](https://github.com/mb-projectlantern/lifeos-results/issues/1) stored as result `9ff8d38f-e2bc-40f3-bda3-d3c61e58824f` with external ID `github:1385602767:1`. Direct synthetic POST returned 201 with result `28047319-ac08-439c-8e3e-64b2e760b33d`. Anonymous deployed page access returned 401. Initial webhook TLS activation failure and sub-millisecond timestamp validation failure were diagnosed and corrected, then the original event was redelivered successfully.
+**Acceptance conclusion:** a user can issue a natural-language instruction in normal ChatGPT, request LIFE_OS integration, allow it to execute later without involvement, and have AI-generated research automatically persisted and displayed in Life OS.
 
-On the deployment Windows account, run the following command and paste the password into the browser's HTTP login prompt; username is **`lantern`**. Execution-policy bypass applies only to this process and does not change normal Windows settings.
+**Provenance limitation:** Life OS verifies GitHub's signed webhook, configured private repository, and allowlisted sender/issue author. It does **not** cryptographically verify ChatGPT authorship. The stored/displayed source remains **`GitHub issue (ChatGPT origin unverified)`**.
+
+Earlier interactive ChatGPT [issue #2](https://github.com/mb-projectlantern/lifeos-results/issues/2) reached storage at `2026-09-24T14:11:41.447Z`; synthetic scheduled ChatGPT [issue #3](https://github.com/mb-projectlantern/lifeos-results/issues/3) reached storage at `2026-09-24T14:17:36.498Z`. [Earlier synthetic conversation](https://chatgpt.com/c/6ab52e2a-0d14-83e8-b4d5-bfec2d23c98e). That earlier scheduled run was about 2m25s late. Final acceptance supersedes its synthetic-only limitation but does not prove multi-day reliability or general research accuracy. The proposed five-day AMZN schedule was not created by this project work. Lock-down creates no new scheduled task.
+
+## Architecture and exact flow
+
+```mermaid
+flowchart TD
+    U[User: natural-language LIFE_OS request] --> C[Normal ChatGPT scheduled task]
+    C --> R[Unattended research and reasoning]
+    R --> G[Private GitHub issue containing JSON]
+    G --> H[GitHub issues/opened signed webhook]
+    H --> W[Cloudflare Worker: signature, repository, author and schema checks]
+    W --> D[(Cloudflare D1 persistent results)]
+    D --> A[Authenticated results API]
+    A --> B[Protected dashboard: polls every 30 seconds]
+```
+
+1. ChatGPT resolves the account's LIFE_OS convention and uses its authorized GitHub write action after scheduled execution. Interactive publishing also works in the observed account.
+2. GitHub POSTs to `/life-os/api/github`; HMAC-SHA256 checks the original body bytes using `X-Hub-Signature-256`.
+3. The Worker requires the configured private repository ID and allowlisted sender **and** issue author. Only `[life-os]` titles and opened events produce results. Edits are ignored; authenticated irrelevant events return 202.
+4. The adapter assigns `external_id=github:<repository-id>:<issue-number>` and the provenance label. `TEST DATA` remains visibly synthetic.
+5. Shared ingestion validates/inserts the row into D1. Unique `external_id` plus `ON CONFLICT DO NOTHING` provides idempotency: first insert 201, duplicate 200 with original record ID.
+6. Page/assets/read API require HTTP Basic over HTTPS. The dashboard fetches newest results immediately, on refresh, and every 30 seconds. Content renders with `textContent`, not interpreted HTML.
+
+## Repository roles and deployed inventory
+
+| Component | Accepted configuration |
+| --- | --- |
+| Public source | `mb-projectlantern/projectlantern`, `lifeos-poc`; source, synthetic tests, sanitized technical docs only |
+| Public website | GitHub Pages `main:/`, CNAME `www.projectlantern.net`; built; unchanged main `923f8e0ecb6c6c39961c98b15bd6b2731825abf9` |
+| Private bridge | `mb-projectlantern/lifeos-results`, ID `1385602767`; PRIVATE; README commit `9aedd8f06210724e0f956126a7f90c0f6aa14eba` and four issues at audit |
+| Worker | `project-lantern-life-os-poc`, existing Cloudflare Free account |
+| Accepted deployed version | `01d637a8-74ac-4c9d-9e26-0bb194b821e2`, 100%, created `2026-09-24T14:11:53.266Z`; no lock-down redeployment |
+| Dashboard | https://project-lantern-life-os-poc.mb-projectlantern.workers.dev/life-os/ |
+| Webhook | `684955308`, active, Issues events, JSON, TLS verification enabled (`insecure_ssl=0`) |
+| Webhook URL | `https://project-lantern-life-os-poc.mb-projectlantern.workers.dev/life-os/api/github` |
+| D1 | `life-os-poc`, ID `d4a11f01-94c3-452c-98f9-d4e25926c75c`, binding `DB`, region ENAM |
+| Stored state | Five results, five distinct external IDs; approximately 45.1 kB; accepted AMZN record present |
+
+The preview domain is intentional. No DNS migration, public-site route change, Pages deployment, or merge is needed. Git does not deploy the Worker or back up D1.
+
+## Source map and persistent storage
+
+- `life-os/worker.js`: authentication, validation/limits, protected routes, D1 insertion/read, metadata logs.
+- `life-os/github.js`: signed issue adapter and provenance label.
+- `life-os/ui.js`: dashboard HTML/CSS and polling/rendering JavaScript.
+- `life-os/migrations/0001_results.sql`: `results` and optional `bridge_status` tables; D1 also has migration bookkeeping.
+- `life-os/access.ps1`, `credentials.ps1`, `initialize-access.ps1`: encrypted local credential recovery, verification, clipboard retrieval.
+- `life-os/test/*.test.js`: regression suite; `database.js` uses real SQLite; `preview.js` is loopback-only with public test credentials.
+- `life-os/synthetic.js`: explicit synthetic publisher; do not run against production for routine baseline verification.
+- `life-os/bridge/gmail.gs`, `email-parser.js`: retained email prototype, **not deployed or part of acceptance**.
+- `wrangler.jsonc`, package files: pinned deployment configuration/dependencies.
+
+D1 persists independently of Worker processes/redeployments. Rows contain generated ID, unique external ID, validated fields, server receipt time, and processing status `stored`. Reads order by execution time then receipt time descending, capped at 100. No retention/deletion job exists. `bridge_status` is for the unused email fallback; its absence is normal.
+
+## Issue/result schema and natural-language LIFE_OS convention
+
+Issue title begins `[life-os]`; body is one JSON object, **without Markdown fences**:
+
+| Field | Required type / limit |
+| --- | --- |
+| `task_name` | Nonempty string, max 160 characters |
+| `task_type` | Nonempty string, max 40 |
+| `subject` | Nonempty string, max 80 |
+| `status` | Nonempty string, max 40; not a fixed enum |
+| `requires_attention` | Boolean |
+| `summary` | Nonempty string, max 2,000 |
+| `details` | Nonempty string, max 20,000; include URLs, timing and caveats |
+| `source` | Nonempty string, max 100; replaced with provenance label except `TEST DATA` |
+| `execution_time` | ISO 8601 with explicit zone; normalized to UTC; fractional precision accepted |
+
+GitHub supplies `external_id`; direct bearer ingestion additionally requires it as a nonempty string, max 250. Ingestion body limit: 32 KiB; webhook envelope: 128 KiB. Never include secrets. Server ID, receipt time and processing status are not caller-controlled.
+
+The LIFE_OS convention worked from a fresh ChatGPT context in this account. Its account-level persistence mechanism was not inspected/exported; Git cannot restore personalization, app grants or tasks. Do not assume an unrelated fresh account knows it or has write permission. To re-establish it, give ChatGPT this portable contract and authorize the private bridge:
+
+> LIFE_OS means publish each requested completed result as a new issue in PRIVATE `mb-projectlantern/lifeos-results`, title beginning `[life-os]`, body containing one JSON object using the fields/limits above. Preserve sources, timing, caveats and actual execution timestamp. Use `source="ChatGPT"`; Life OS labels provenance conservatively. Never include secrets. When I request scheduled work integrated with LIFE_OS, publish after execution using the authorized GitHub write action. If unavailable or approval-blocked, report that limitation; do not claim publication or substitute manual transfer.
+
+This is the integration contract, not a new schedule or future behavior guarantee. Initial setup required adding the private bridge to selected-repository app permissions. Normal ChatGPT behavior is account-specific; Codex/API/ChatGPT Work capability is not substitute evidence. [Official task documentation](https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt) and [GitHub app documentation](https://help.openai.com/en/articles/11145903-connecting-github-to-chatgpt) are background references; acceptance above is the observed evidence.
+
+## Secrets and authentication
+
+| Setting | Location / purpose |
+| --- | --- |
+| `DASHBOARD_USER` | Worker secret; exact username `lantern` |
+| `DASHBOARD_PASSWORD` | Worker secret; minimum 24 characters; independent random password; Basic read access |
+| `INGEST_TOKEN` | Worker secret; minimum 32 characters; write-only bearer credential, never sent to dashboard JS |
+| `GITHUB_WEBHOOK_SECRET` | Matching Worker/private webhook secret; minimum 32 characters |
+| `GITHUB_REPOSITORY_ID` | Non-secret Worker variable `1385602767` |
+| `GITHUB_ACTOR` | Non-secret allowlist `mb-projectlantern`, sender and issue author |
+| `DB` | D1 binding; non-secret database ID in Wrangler config |
+| `LIFE_OS_URL` | Optional synthetic/email tooling origin; no embedded credentials |
+
+Missing/short core secrets fail closed. HMAC uses Web Crypto verification. SQL uses bound parameters. Reads have no public CORS permission. Responses include no-store, CSP, frame denial, no-sniff, HSTS and no-referrer headers. Application logs contain request/status/record/delivery metadata, not passwords, Authorization headers or research bodies; direct ingestion logs caller-supplied `source`, so never place private content there. Basic authentication caches credentials in the browser; close the private browsing session to end that session. No application logout, per-user identity, MFA or rate limiter exists.
+
+GitHub credential-manager and Wrangler OAuth credentials stay outside both repositories. Cloudflare can list secret names, not return values. Never rotate working credentials as housekeeping. Dashboard, ingestion and webhook credentials are separate.
+
+## Local credential setup and retrieval
+
+Windows PowerShell 5.1 is supported. Run as the Windows user who owns the credential:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\access.ps1" -CopyPassword
 ```
 
-The script verifies the password against the deployed HTTPS dashboard before copying it. The dashboard-only credential is Windows DPAPI-encrypted at `C:\Users\mattb\.projectlantern\dashboard-credential.xml`, outside both repositories. Other Windows users resolve their own user-profile directory. This location avoids packaged-app AppData redirection. The script can also read the original `life-os-secrets.xml` for compatibility. It never copies ingestion or webhook tokens. Clear the clipboard after pasting; clipboard history/sync may retain passwords.
+Bypass applies only to that process. Username: **`lantern`**. DPAPI-encrypted password: `C:\Users\mattb\.projectlantern\dashboard-credential.xml`, outside both repositories. The script verifies live authentication before copying. Paste into the dashboard prompt, then clear the clipboard; history/sync may retain passwords.
 
-### Dashboard setup and recovery
+The original missing-file failure combined undocumented one-time local setup with Windows MSIX AppData redirection. Codex's apparent AppData writes physically landed in `C:\Users\mattb\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\ProjectLantern\`, invisible at that apparent path in ordinary PowerShell. File-handle queries proved the redirection and verified the new user-profile path is unredirected. Existing credentials were recovered, not rotated.
 
-The original deployment created `life-os-secrets.xml` through a one-time local setup command, but the checked-in access script assumed that file already existed. There was no reproducible bootstrap or useful missing-file handling. During this repair, the original file was present and decryptable under `MATT_HOMEPC\mattb`; its password already authenticated successfully. Follow-up diagnosis confirmed the missing-path cause: Windows MSIX redirected the packaged Codex process's AppData writes into `C:\Users\mattb\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\ProjectLantern\`. Ordinary PowerShell saw no file at the apparent AppData path. A Windows file-handle query confirmed this physical redirection. The credential now lives under the user profile at `.projectlantern\dashboard-credential.xml`; another file-handle query confirmed that its physical path is not redirected. Earlier successful authentication checks inside Codex did not establish visibility from an ordinary terminal. The repair recovered that same password into the dashboard-only file; it did not generate a password or change Cloudflare authentication. The original secrets file was left unchanged.
-
-For a fresh Windows machine or a missing/unreadable credential file, run:
+Fresh machine/missing file/recovery:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\initialize-access.ps1"
 ```
 
-Adjust the checkout path on another machine. Initialization checks the current credential, an interrupted reset's encrypted `.pending` file, previous AppData credentials, and the physical `OpenAI.Codex_*\LocalCache\Local\ProjectLantern` locations. Access also checks these recovery locations if the current file is absent. It recovers a candidate only after it authenticates to the live dashboard. If none works, it prompts for the existing password with hidden input (retrieve it from your password manager or original machine), verifies it, creates the directory, and saves an encrypted dashboard-only credential. DPAPI files are tied to the Windows account and machine that created them; copying the XML to a new machine is not a password transfer mechanism. Cloudflare can list secret names but cannot return their values. Normal initialization never changes Cloudflare.
+Adjust checkout paths as needed. Initialization checks canonical/pending credentials, old AppData files, and physical `OpenAI.Codex_*` cache paths. It recovers only after live authentication. Otherwise it prompts invisibly for the known password from a password manager/original machine, creates the directory, and saves a verified dashboard-only credential. DPAPI is bound to the original Windows user/machine; copying XML is not portable password backup.
 
-If the password is genuinely lost after checking your original machine and password manager, install the pinned dependencies and sign into the existing Cloudflare account with Wrangler, then explicitly request a reset:
+Only if recovery is impossible, append `-ResetPassword` after installing dependencies/signing into Wrangler. Recovery still runs first; otherwise it creates a random password, saves an encrypted `.pending` copy before the network operation, confirms existing secret names, updates only `DASHBOARD_PASSWORD` via Wrangler stdin, verifies authentication and saves the canonical file. No code deployment or ingestion/webhook changes occur. Retain `.pending` after interruption and rerun initialization. A network outage is not a reason to reset.
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Dev\ProjectLantern\projectlantern\life-os\initialize-access.ps1" -ResetPassword
-```
+## Deployment prerequisites and procedure
 
-Recovery still runs first. Only if no saved credential authenticates does this create a cryptographically random password, save an encrypted pending copy, confirm the existing dashboard secret names in Cloudflare, and update **only `DASHBOARD_PASSWORD`** through Wrangler stdin. It keeps username `lantern`, verifies the deployed password, and saves the canonical credential. It does not deploy Worker code or update ingestion/webhook secrets. If interrupted, retain the `.pending` file and rerun initialization; it checks whether that password is already active before attempting another reset. A network failure alone is not a reason to request a password reset.
+Required: existing ChatGPT subscription, authorized GitHub write action/private bridge, Cloudflare Free Workers/D1, Node >=22.13 and pnpm. Verified runtime: Node 24.19.0; Wrangler pinned to 4.136.3. Use the lockfile; do not upgrade while reproducing the baseline.
 
-Credential regression checks: `node --test life-os/test/credentials.test.js` on Windows. Nine tests cover missing/corrupt files, legacy recovery, packaged-app recovery when ordinary AppData files are absent, fresh import, rejected passwords, reset ordering, interrupted resets, and pending recovery. They use real Windows PowerShell/DPAPI with mocked network, Cloudflare, and clipboard boundaries. Separately, the actual `access.ps1 -CopyPassword` command was run under Windows PowerShell 5.1: its clipboard value matched the original saved password and authenticated to the deployed dashboard (HTTP 200). The working ingestion pipeline was neither modified nor retested for this repair. Final browser step: open the protected URL and enter `lantern` with the copied password.
-
-| Test | Current evidence | Classification |
-| --- | --- | --- |
-| Synthetic pipeline | Six automated tests pass; local browser displays the requested synthetic card; deployed POST and signed GitHub delivery verified in D1 | Pipeline verified; cloud browser login still needs user |
-| A: interactive ChatGPT publishes | Initial connector failure resolved by granting the app access to the new private repository. Normal ChatGPT created issue 2; webhook stored it automatically | PASS via GitHub intermediary |
-| B: scheduled task writes directly | No direct scheduled custom-tool write demonstrated | Pending / unsupported path not assumed |
-| C: scheduled task via intermediary | Normal scheduled ChatGPT execution created issue 3; real webhook stored it and authenticated dashboard API returned it | PASS — WORKAROUND SUCCESS |
-
-The result is **WORKAROUND SUCCESS**, not DIRECT SUCCESS. The real browser verified dashboard rendering locally; deployed read/API authentication and returned data were verified remotely. The in-app browser blocked automated opening of the cloud Basic-auth page, so final cloud-browser login remains a user-side check using `access.ps1`. The normal scheduled result is visible in ChatGPT; delivery of an OS push/email notification was not independently verified (desktop push permission was not enabled).
-
-## 1. Existing architecture and infrastructure audit
-
-The complete original tracked tree is `index.html`, `favicon.png`, and `CNAME`. No backend, build system, database, package manifest, workflow, or repository guidance file existed. All original text files were inspected; the PNG is the favicon. Git origin is `https://github.com/mb-projectlantern/projectlantern.git`, a **public** repository. Initial checkout was clean at `923f8e0` on `main`; only local `main` and cached `origin/main` existed.
-
-Authenticated GitHub Pages API confirmed `status=built`, `build_type=legacy`, source branch `main`, path `/`, CNAME `www.projectlantern.net`, and URL `https://www.projectlantern.net/`. DNS resolves that hostname through `mb-projectlantern.github.io`. The Pages settings are not inferred from CNAME alone. GitHub Pages supplies no application server-side authentication or write API here. Account services outside the repository were not assumed to exist.
-
-Implementation is on `lifeos-poc`. Original landing page, favicon, CNAME, and `main` are unchanged. No result data or production secrets belong in the public repository.
-
-## 2. Current capability research
-
-Official sources were opened on 2026-09-24; distinguish normal ChatGPT, ChatGPT Work, and Codex. Do not infer normal ChatGPT write permissions from this Codex session's tools.
-
-| Capability | Confirmed / unsupported / uncertain |
-| --- | --- |
-| Scheduled Tasks | Confirmed: schedules, monitoring, email/push notifications, supported apps subject to permissions. Approval-requiring actions can pause execution. GPTs are unsupported. Custom outbound HTTP from a normal task was not established. [Tasks](https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt) |
-| GitHub | Standard GitHub documentation describes read-only repository access, while the broader task docs mention supported app actions. **Observed in this account:** normal ChatGPT successfully created issue 2 interactively and issue 3 during scheduled execution after the private repo was added to its installed app. Treat this as account-specific evidence, not a universal entitlement. [GitHub in ChatGPT](https://help.openai.com/en/articles/11145903-connecting-github-to-chatgpt) |
-| Apps / MCP | Custom MCP servers can expose tools. This does not prove that the user's scheduled task can invoke a custom write tool unattended. No MCP service or paid inference is implemented. [MCP server documentation](https://developers.openai.com/plugins/build/mcp-server) |
-| Work / event triggers | Work supports supported incoming Gmail, Slack, and GitHub events. Incoming event support is not a general outbound webhook guarantee. Work is distinct from ordinary Chat. [Work](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex) |
-| Email | Task notification email is documented. Full structured result inclusion, sender address, formatting, and delivery frequency need a real sample. A link-only notification is insufficient. Reading email via a connector does not grant background forwarding/processing. [Tasks](https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt) |
-| API inference | Not used. No OpenAI API key is required. API-only inference is outside this experiment unless separately approved. |
-
-## 3–6. Proposed and implemented architecture, rationale, flow
-
-Selected user preference: a new private `mb-projectlantern/lifeos-results` repository (created and confirmed private; repository ID `1385602767`) as the bridge, with free Cloudflare infrastructure.
-
-Proposed successful path:
-
-```text
-Normal ChatGPT monitoring task + normal notification
-  → creates a structured issue in PRIVATE lifeos-results (verified in this account)
-  → GitHub issues/opened signed webhook
-  → /life-os/api/github (HMAC + private repository + author checks)
-  → same validated ingestion code used by /life-os/api/results
-  → Cloudflare D1 results table
-  → authenticated /life-os/ dashboard polling every 30 seconds
-```
-
-Actually implemented and deployed: the Worker, two small D1 tables, authenticated API/UI, and signed GitHub webhook. Also implemented: synthetic publisher, real-SQLite local harness, tests, and optional Gmail bridge code. The Gmail fallback is not deployed. No GitHub Actions runner is needed: a repository webhook is smaller and avoids polling or storing a Cloudflare write token in GitHub.
-
-Alternative when normal ChatGPT cannot write issues:
-
-```text
-ChatGPT task → its notification email → dedicated Gmail filter/label
-  → Apps Script five-minute trigger → authenticated POST → D1 → dashboard
-```
-
-This fallback does not require the task to call an app. It works only if email contains the requested structured result. The parser fails visibly for missing/truncated output; it never fabricates an analysis from a notification link. Gmail integration code is a prototype until a real notification validates the format. No paid OpenAI API, browser scraping daemon, or manual result transfer is used.
-
-D1 was chosen for atomic deduplication, indexed newest-first reads, and persistence without operating a server. A single result table plus a small optional email-bridge status table is the entire database. Free Workers and D1 should comfortably cover a five-day experiment.
-
-## 7. Files
-
-- `life-os/worker.js`: authentication, validation, bounded requests, ingestion/read routes, logs.
-- `life-os/github.js`: signed private-repository issue bridge.
-- `life-os/ui.js`: protected responsive page, CSS, safe text-only rendering, polling.
-- `life-os/migrations/0001_results.sql`: result persistence and optional bridge heartbeat.
-- `life-os/synthetic.js`: test-data generator and authenticated publisher.
-- `life-os/access.ps1`: local helper to copy the DPAPI-protected dashboard password.
-- `life-os/bridge/email-parser.js`, `gmail.gs`: optional notification-email fallback.
-- `life-os/test/`: SQL adapter, pipeline/security tests, loopback-only preview server.
-- `wrangler.jsonc`, `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`: deployment tooling with pinned Wrangler.
-- `.gitignore`: excludes dependencies, local secrets, preview data, and logs.
-- `LIFE_OS_POC.md`: audit, setup, exact experiments, and evidence.
-- `life-os/access.ps1`, `life-os/initialize-access.ps1`, `life-os/credentials.ps1`: verified dashboard credential retrieval, recovery/bootstrap, and encrypted local storage.
-- `life-os/test/credentials.test.js`: isolated Windows credential workflow regression tests.
-
-The repository has a source directory named `life-os`, but no static `life-os/index.html` or public result file. The actual route is served by the Worker. Merging source into Pages alone cannot deploy the private dashboard.
-
-## 8–11. Deployment, authentication, secrets, services
-
-Required: existing ChatGPT subscription, GitHub private repository, Cloudflare **Free** account with Workers and D1. Optional: Gmail and Apps Script for fallback. No paid plan selection is needed.
-
-Use Node 22.13+ and pnpm. On this machine Node 24.19.0 is available; pnpm lives in the bundled runtime. A normal workstation can use its installed pnpm.
+For existing infrastructure, reuse D1/secrets. For a **genuinely new installation only**:
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm test
-pnpm exec wrangler login --scopes account:read user:read workers:write workers_routes:write workers_scripts:write workers_tail:read d1:write zone:read
+pnpm exec wrangler login
 pnpm exec wrangler d1 create life-os-poc
-# Put the returned non-secret database ID in wrangler.jsonc.
+# Set the returned non-secret D1 ID in wrangler.jsonc for this new installation.
 pnpm exec wrangler d1 migrations apply life-os-poc --remote
 pnpm exec wrangler secret put DASHBOARD_USER
 pnpm exec wrangler secret put DASHBOARD_PASSWORD
@@ -143,88 +171,107 @@ pnpm exec wrangler secret put GITHUB_WEBHOOK_SECRET
 pnpm exec wrangler deploy
 ```
 
-These deployment commands are for initial infrastructure setup; do not rerun them to repair local dashboard access. Enter secret values at CLI prompts or use a protected secret manager; never put them in command arguments, source, issues, task prompts, or commits. Wrangler stores its own OAuth credential outside these repositories. Use independently generated high-entropy values for the password and both tokens (32 random bytes encoded as hex is sufficient). Set `DASHBOARD_USER` to `lantern`. Worker refuses service when core credentials are absent/too short. After initial deployment, run `initialize-access.ps1` as described above and enter the same dashboard password to provision the encrypted local credential. Keep that password in a password manager for another machine; deployment alone does not create a local DPAPI file.
+Enter secrets through CLI prompts/protected secret handling, never command arguments, source, issues or task messages. Use `lantern` and independent high-entropy values (32 random bytes encoded as hex is sufficient). Initialize local access with that same password. A replacement private repository requires deliberate ID/actor updates. Configure its webhook to the documented URL, Issues only, JSON, TLS verification enabled, matching secret. Do not create a duplicate webhook or rerun initial secret setup on the existing deployment.
 
-| Setting | Where / purpose |
-| --- | --- |
-| `DASHBOARD_USER`, `DASHBOARD_PASSWORD` | Worker secrets; server-side HTTP Basic authentication over HTTPS for page/assets/read API. Password minimum 24 characters; use random values. |
-| `INGEST_TOKEN` | Separate Worker secret, minimum 32 characters; write-only bearer API credential. Never sent to dashboard JS. Optional Gmail Script Property. |
-| `GITHUB_WEBHOOK_SECRET` | Worker secret and private repo webhook configuration; minimum 32 characters. No repository file stores it. |
-| `GITHUB_REPOSITORY_ID` | Non-secret Worker variable, pinned to the private repo ID. |
-| `GITHUB_ACTOR` | Non-secret allowlisted GitHub login; initially `mb-projectlantern`. A different bot requires a deliberate allowlist change. |
-| `DB` | D1 binding. Database ID/account ID are identifiers, not credentials. |
-| `LIFE_OS_URL` | Shell/Apps Script setting containing origin only; no embedded credentials. |
+## Verification and security audit
 
-HTTP Basic is real server-side protection. There is no embedded JavaScript password, public data JSON, client-side gate, or cross-origin read permission. All results render via `textContent`, with CSP/no-store headers. Basic authentication has browser-managed credential caching and no logout button; close the private browsing session or clear credentials to log out. Rate limiting and stronger identity management are production improvements. Synthetic local credentials in tests are never accepted in production unless someone deliberately configures them.
-
-Initial cloud smoke test should use the returned `workers.dev` origin. To satisfy the exact public-site path, add `projectlantern.net` to Cloudflare Free DNS, preserve **all** existing DNS records (especially mail records), set the `www` CNAME to the existing GitHub Pages target with proxying, use Full (strict) TLS, and route only `www.projectlantern.net/life-os*` to this Worker. Leave `/` and every other existing site path on Pages. [Worker route requirements](https://developers.cloudflare.com/workers/configuration/routing/routes/). A nameserver change at the registrar may require the user; the POC has not silently changed DNS. Do not route the entire site to the Worker. If using Wrangler routes, set `workers_dev` explicitly according to whether the protected preview origin should remain available.
-
-Configure the private repository webhook at Settings → Webhooks: payload URL `https://YOUR_WORKER_OR_DOMAIN/life-os/api/github`, content type `application/json`, SSL verification enabled, secret as above, **Issues** events only. Receiver accepts only new issues with title prefix `[life-os]`, configured private repo ID, and allowlisted sender/author. Body must be one JSON object, no code fences. Retries use `github:repository-id:issue-number` for deduplication. Edits are ignored; create a new issue for a new execution. GitHub origin does not cryptographically prove ChatGPT authorship, so the source label says that origin is unverified. Confirm it by matching the actual task run during the experiment.
-
-## 12. Cost and limits
-
-Current official free allowances: Workers 100,000 requests/day and 10 ms CPU/invocation; D1 5 million rows read/day, 100,000 written/day, 5 GB account storage. One tab polling all day makes about 2,880 reads; newest-results query is capped at 100 rows. Keep the account on Free; do not enable paid upgrades. [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/), [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/).
-
-Gmail Apps Script consumer quotas currently include 20,000 email reads/writes/day, 20,000 URL fetches/day, and 90 minutes/day trigger runtime; a run is limited to six minutes. The prototype scans at most 50 labeled threads in a seven-day lookback and deduplicates at ingestion. This is intentionally bounded to the five-day POC. [Apps Script quotas](https://developers.google.com/apps-script/guides/services/quotas). Existing subscription and domain costs are excluded. ChatGPT plan usage still applies; no inference billing is introduced.
-
-## 13. Synthetic pipeline procedure
-
-Local checks:
+Complete regression command:
 
 ```sh
-pnpm test
-node life-os/test/preview.js
+node --test life-os/test/*.test.js
+# Equivalent package script: pnpm test
 ```
 
-Open `http://127.0.0.1:8787/life-os/`, sign in with user `preview` and the explicit **local-only** password printed by the preview server. It binds to loopback only and stores synthetic data in ignored `test-output/preview.sqlite`. Never tunnel this harness. Tests verify SQLite reopen persistence, duplicates, sorting, actual UI code, auth boundaries, failed storage, malformed input, webhook signatures/privacy/actor checks, and complete-vs-link-only email parsing. They do not replace a real Cloudflare deployment test.
+**Final result: 15 tests, 15 passed, 0 failed, 0 skipped, 0 cancelled.** Six integration/parser tests cover timestamps; ingestion/persistence after SQLite reopen; ordering and actual UI rendering/polling; auth boundaries; malformed/oversized input and storage failures; signed webhook/replay/private-repo/actor checks; synthetic handling; and the unused email parser. Nine Windows credential tests cover missing/corrupt files, legacy/package recovery, fresh import, mismatches, reset ordering, interruption and pending recovery. Isolated SQLite/DPAPI fixtures and mocked Cloudflare/clipboard boundaries create no live issues.
 
-For deployed ingestion, set `LIFE_OS_URL` and `INGEST_TOKEN` securely in your shell and run `node life-os/synthetic.js`. Expect HTTP 201, then a NEEDS ATTENTION card with the exact supplied summary and source TEST DATA. For the GitHub path, create an issue with title `[life-os] Life OS Integration Test` and the same JSON from `synthetic()`; this tests the bridge, not ChatGPT intelligence. Expect GitHub delivery 201 (200 for a redelivery), a matching `external_id`, and exactly one card after replay.
+Read-only live audit confirmed:
 
-## 14. Interactive ChatGPT test (A)
+- Worker version and all four secret names present; no redeployment/rotation.
+- D1 reads succeed: five records/five unique IDs; accepted record matches issue #4 summary/details.
+- Page, JS, CSS and results API: anonymous 401, existing credential 200.
+- Webhook active with TLS verification; acceptance delivery 201; earlier interactive/scheduled deliveries successful.
+- User accepted actual dashboard display; automated test confirms safe rendering and 30-second polling.
+- Public Pages built from unchanged main; private bridge PRIVATE; PR draft/unmerged.
+- No new live issue, synthetic production write, schema change or scheduled task during lock-down.
 
-In **normal ChatGPT**, with access to the private repository, use:
+The focused security scan inspected all **33 reachable public Git blobs before the documentation commit**, including POC history, tracked/config/doc/test files, plus the private repo's one README blob, four issues and zero comments. Six existing sensitive values (dashboard password, ingestion token, webhook secret, GitHub credential, Wrangler OAuth/refresh credentials) were compared in memory without printing/saving them. Token/private-key patterns and manual review of credential references found no exposed secrets. Public test/preview literals differ from production. Private AMZN summary/details were compared against public history with no matches; no private monitoring payload is committed. Final docs are scanned before tagging. This is a focused audit, not proof of detecting every unknown secret format.
 
-> This is a Life OS integration test, not an investing recommendation. Use an available authorized GitHub write action to create exactly one issue in the PRIVATE repository mb-projectlantern/lifeos-results. Title: [life-os] Interactive ChatGPT Test. Body must be a single JSON object, without Markdown fences: task_name="Life OS Integration Test", task_type="monitor", subject="AMZN", status="TEST", requires_attention=true, summary="Synthetic test result. If this appears, the Life OS ingestion and display pipeline is operational.", details="Interactive ChatGPT integration test; not a scheduled execution.", source="TEST DATA", execution_time=current UTC time as ISO 8601. Never include credentials. If this ChatGPT experience cannot write issues, say so explicitly; do not claim you published and do not ask me to manually transfer the result.
+Ignore coverage includes `.env*`, `.dev.vars*`, `.wrangler/`, dependencies, SQLite/test-output, local encrypted credentials/pending copies, logs, private-key/certificate containers and private backup folders. Production credentials, private keys, research payloads and real log dumps belong in neither repository. No defect required a runtime change; lock-down changes only documentation and ignore coverage.
 
-Record the actual chat, issue URL, webhook delivery status, stored result ID, and dashboard display. An issue created by this Codex development session is not Test A. If normal ChatGPT lacks write access, optionally test ChatGPT Work separately and label it **Work**, not ordinary Chat. Do not represent a Codex automation as a scheduled ChatGPT Task.
+## Backup, rollback and recovery
 
-## 15–16. Scheduled task experiment (B/C), exact prompt, expected result
+Git preserves source/documentation, **not** D1 data, secrets, account permissions or ChatGPT state. A verified D1 export containing the acceptance record is DPAPI-encrypted at:
 
-First run a single scheduled synthetic issue-write test two minutes in the future using the Test A body and task name `Scheduled Life OS Integration Test`; require a scheduled-task confirmation card and matching unattended delivery. If an approval pause occurs each run, unattended operation has not passed. Do not create a five-day monitor until the one-off path works.
+`C:\Users\mattb\.projectlantern\backups\lifeos-poc-accepted-2026-09-24.sql.dpapi.xml`
 
-After that succeeds, use this bounded AMZN prompt (dates are explicit for this audit):
+Temporary plaintext SQL was deleted after encryption/round-trip verification. Recovery needs the original Windows user/machine. Keep a separately secured portable backup before retiring that machine; neither Git repository is a destination for private data backups.
 
-> Create a monitoring task named LIFEOS-AMZN-POC. Run at 08:30 and 15:30 America/New_York on September 25, 28, 29, 30 and October 1, 2026, then stop. These are the next five intended US trading days after September 24; verify the exchange calendar and skip any market closure. Monitor Amazon (AMZN) using available current sources. Assess price movement, unusual volume, earnings/guidance, filings, and material company news. Cite sources and their timestamps. Distinguish stale or unavailable market data from a normal result, and do not invent prices or volume. Compare against previous runs and avoid repeating unchanged news. Notify me only when a new development materially warrants attention, explaining why; no routine completion alerts. On each completed execution, use an authorized GitHub write action to create one issue in PRIVATE mb-projectlantern/lifeos-results with title [life-os] AMZN followed by the UTC execution timestamp. The body must be only a JSON object with task_name="AMZN Monitor", task_type="monitor", subject="AMZN", status="completed" or "data_unavailable", requires_attention as a Boolean, summary, details including source URLs and limitations, source="ChatGPT", and execution_time as an ISO 8601 UTC timestamp. Do not include secrets. Do not trade. If the issue action is unavailable or pauses for approval, report that integration limitation honestly; do not claim publication. Confirm the schedule and final stop condition before starting.
+Recover source without touching main:
 
-A task-produced private issue flowing automatically to the dashboard is **WORKAROUND SUCCESS**, not direct success. A successful interactive issue with no scheduled publication is **PARTIAL SUCCESS**. Routine publication can include NORMAL cards while attention notifications remain selective, subject to ChatGPT's actual notification controls. Unsupported schedule granularity must be reported, not approximated silently.
+```sh
+git fetch origin --tags
+git rev-parse 'lifeos-poc-v1.0-accepted^{commit}'
+git switch --detach lifeos-poc-v1.0-accepted
+pnpm install --frozen-lockfile
+pnpm test
+```
 
-If GitHub writes are unavailable, attempt the email fallback rather than stopping:
+Use a separate checkout if uncommitted work exists. Never force-update this tag. Record its resolved SHA independently; Git tags are technically movable, so this tag is immutable by policy.
 
-1. Enable task email notifications and identify the actual sender from a genuine task notification. Do not guess the sender.
-2. Create a private Apps Script project containing `gmail.gs` and `email-parser.js`. Script Properties: origin-only `LIFE_OS_URL`, secret `INGEST_TOKEN`, exact `EXPECTED_SENDER`, `SOURCE_LABEL`.
-3. Create a Gmail filter matching that sender and task subject `LIFEOS-AMZN-POC`; apply the dedicated label. Authorize Gmail/URL Fetch access and create a five-minute trigger for `pollLifeOsMail`. Credentials remain in private Script Properties.
-4. Run a one-time scheduled synthetic task with its entire result between `LIFE_OS_RESULT_BEGIN` and `LIFE_OS_RESULT_END`, containing the same JSON fields above. Confirm the email has the complete block and passes Gmail authentication.
-5. For the five-day prompt above, replace the issue-writing sentence with: “For each materially noteworthy update, include the complete JSON result in your notification output between the literal lines LIFE_OS_RESULT_BEGIN and LIFE_OS_RESULT_END. A separate email processor publishes it to Life OS. You are not directly calling Life OS. Do not claim successful publication.”
-6. Verify email message ID → Apps Script execution → `gmail:message-id` row → card. Missing marker, truncated email, or link-only email is a failed bridge experiment. NORMAL runs may not generate email when notifications are suppressed; this fallback publishes delivered actionable results, not guaranteed every execution.
+If a later **Worker-only** deployment fails, inspect `pnpm exec wrangler deployments list`. If the accepted version is available and compatible with current bindings/secrets:
 
-## 17. Troubleshooting and observability
+```sh
+pnpm exec wrangler rollback 01d637a8-74ac-4c9d-9e26-0bb194b821e2
+```
 
-| Observation | Check next |
+Alternatively deploy tagged source with existing config/bindings/secrets via `pnpm exec wrangler deploy`, after checking the target account. Neither restores database contents. Do not recreate/delete D1 or rerun secret setup just to roll back code. Verify anonymous 401, authenticated 200 and the existing acceptance record; no new live issue is needed.
+
+Before database recovery, deliberately stop conflicting writes and export current state privately; prefer testing in a separate database. D1 Time Travel retains 7 days on Free (30 on Paid), not a permanent baseline archive. Select a point before corruption using Cloudflare's dashboard/official instructions; newer writes will be lost. [D1 Time Travel](https://developers.cloudflare.com/d1/reference/time-travel/).
+
+To decrypt the local export under the original Windows account/machine into a private location outside Git:
+
+```powershell
+$backup = 'C:\Users\mattb\.projectlantern\backups\lifeos-poc-accepted-2026-09-24.sql.dpapi.xml'
+$restoreSql = 'C:\Users\mattb\.projectlantern\backups\restore-private.sql'
+$secureSql = Import-Clixml -LiteralPath $backup
+[IO.File]::WriteAllText($restoreSql, [Net.NetworkCredential]::new('', $secureSql).Password)
+```
+
+Import into a separately provisioned empty recovery database using `pnpm exec wrangler d1 execute <recovery-database-name> --remote --file <private-sql-path>`. Validate schema, count and acceptance ID before a deliberate binding switch; delete plaintext SQL afterward. Do not import blindly into populated production. No restore/rollback was performed during lock-down.
+
+For missed delivery after correcting its failure, redeliver the **original opened event** in GitHub Recent deliveries. Unique external IDs make successful replays idempotent. Editing an issue does not re-ingest it. Dashboard access failures use initialization; webhook secret loss requires coordinated GitHub/Worker repair, not dashboard reset.
+
+## Troubleshooting
+
+| Symptom | Check |
 | --- | --- |
-| No ChatGPT output | Scheduled task status, stop date, account limits, required approvals. No downstream system can distinguish this from a quiet monitor without checking the task. |
-| Output but no issue | ChatGPT write-action availability and repository authorization; compare Chat vs Work. |
-| Issue exists but no row | GitHub webhook Recent deliveries; missing delivery means configuration problem. 401 means signature, 403 means repo/privacy/author, 400 means malformed result, 503 means configuration/storage. Redeliver the original opened event after correction. |
-| No email | Task notification settings and Gmail delivery/filter. A quiet monitor can legitimately send nothing. |
-| Email exists but no row | Apps Script Executions; sender/DMARC, markers, JSON, trigger status, quota, HTTP result. Link-only email cannot pass. |
-| Ingestion returned 503 | Worker logs by request_id and stage; D1 binding/migration/free quota. Bodies and secrets are not logged. |
-| Row exists but no card | Authenticated GET `/life-os/api/results`, browser error, page's last-check timestamp; newest 100 limit. |
-| Duplicate delivery | HTTP 200/duplicate with original ID; no new card. |
-| Dashboard 401 / 503 | Authentication / missing configuration respectively. All routes fail closed. |
+| No scheduled execution | ChatGPT task schedule/status, limits, approvals; timing not guaranteed |
+| Output but no issue | Write-action availability and selected-repository grant; confirm actual issue URL |
+| Issue but no result | Recent deliveries: 401 signature, 403 repo/author, 400 payload/schema, 503 config/storage; metadata logs |
+| Duplicate delivery | 200 with original record ID is expected; no new row |
+| Dashboard 401 / 503 | Credential mismatch / missing configuration or unavailable storage |
+| Missing local credential | Initialization also checks physical Codex cache; retain current user-profile path |
+| DPAPI decryption fails | Use original account/machine or securely import known password on the new machine |
+| Script execution blocked | Use process-only `powershell.exe -ExecutionPolicy Bypass -File ...` above |
+| Row but no card | Authenticated results API, connection status, browser errors, newest-100 cap, polling interval |
+| Stale display | Check network/authentication before altering storage |
+| Email bridge status absent | Expected: fallback is not deployed |
 
-Every stored row has source, server received time, external identifier, and processing_status=stored. Worker logs record request ID, stage, status, internal result ID and webhook delivery identifier where available. Failed attempts stay in service logs, not as fake results. Optional email heartbeat includes last poll/error; it is not evidence of a completed ChatGPT run. GitHub is event-driven and does not emit periodic heartbeats.
+## Costs, dependencies, limitations and technical debt
 
-## 18–19. Limitations and production changes
+No paid OpenAI API inference, GitHub Actions runner or new paid infrastructure was enabled. Existing ChatGPT subscription/domain costs remain outside the POC. Incremental hosting is expected to cost $0 on Free within quotas; this audit did not retrieve a billing invoice. A paid-plan upgrade, larger workload, subscription/domain changes or separately deployed services could create recurring charges. No paid upgrade occurred.
 
-No real financial recommendations or trading actions are implemented. The task prompt cannot guarantee market data quality, app permissions, or delivery. GitHub writes were verified for this account and may differ by account/product surface or change later. Email formatting is undocumented and may change. No connector is assumed available merely because Codex has a similar tool.
+Checked 2026-09-24: Workers Free allows 100,000 requests/day and 10 ms CPU/invocation. D1 Free allows 5 million rows read/day, 100,000 written/day and 5 GB total storage. A continuously open dashboard makes about 2,880 polls/day, potentially returning 100 rows each. Monitor actual usage and plan settings; quota exhaustion can interrupt service. [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/), [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/).
 
-For production: identity provider/MFA and session logout, rate limiting, structured retention/deletion/export, backups, automated webhook redelivery/reconciliation, durable error records and alerts, a stronger signed provenance contract, JSON schema/versioning, broader browser testing, and monitoring for quota/permission changes. This POC deliberately omits those systems. Results currently persist until explicitly removed; only the newest 100 display. Never expose the local test server or reuse its public fixture credentials. No production secret is committed to either repository.
+Actual retained limitations/debt:
+
+- GitHub is the intermediary/message bus; GitHub source does not independently prove ChatGPT authorship.
+- Fresh-context convention resolution/unattended writes are observed for this account, not guaranteed universally. ChatGPT permissions and convention persistence are external dependencies.
+- Scheduling can be late; one research run does not prove five-day reliability or independently validate financial conclusions. No trading exists.
+- Basic auth lacks application logout, MFA, per-user roles and throttling. Clipboard/DPAPI portability limitations remain.
+- Newest 100 records only; no pagination, retention, automatic reconciliation, delivery-failure alerting or scheduled independent backups. Baseline backup is manual/machine-bound.
+- Edits ignored; uniqueness handles replay but there is no independent event ledger/repair queue.
+- No direct ChatGPT API integration, inference key or paid API fallback. Gmail prototype is unactivated; actual email format/unattended integration remains unproven.
+- Service logs/delivery history have provider-managed retention. Git alone cannot restore accounts or data.
+
+These boundaries are not permission to begin V1. Preserve the accepted POC; the product specification comes separately.
