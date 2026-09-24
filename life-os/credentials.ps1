@@ -3,13 +3,32 @@
 $script:LifeOsDashboard = 'https://project-lantern-life-os-poc.mb-projectlantern.workers.dev/life-os/'
 
 function Get-LifeOsCredentialPath {
-    $localDirectory = [Environment]::GetFolderPath('LocalApplicationData')
-    if (-not $localDirectory) { throw 'Windows could not resolve LocalApplicationData for the current user.' }
-    Join-Path $localDirectory 'ProjectLantern\dashboard-credential.xml'
+    # AppData can be redirected into an MSIX package's LocalCache. Use a shared
+    # user-profile location visible to both packaged Codex and ordinary terminals.
+    $profileDirectory = [Environment]::GetFolderPath('UserProfile')
+    if (-not $profileDirectory) { throw 'Windows could not resolve the current user profile.' }
+    Join-Path $profileDirectory '.projectlantern\dashboard-credential.xml'
 }
 
 function Get-LifeOsLegacyPath {
     Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'ProjectLantern\life-os-secrets.xml'
+}
+
+function Get-LifeOsRecoveryPaths {
+    $localDirectory = [Environment]::GetFolderPath('LocalApplicationData')
+    Join-Path $localDirectory 'ProjectLantern\dashboard-credential.xml'
+    Join-Path $localDirectory 'ProjectLantern\dashboard-credential.xml.pending'
+    Get-LifeOsLegacyPath
+    # Ordinary PowerShell must inspect the physical location of files that the
+    # packaged app previously wrote through a redirected AppData path.
+    $packages = Join-Path $localDirectory 'Packages'
+    if (Test-Path -LiteralPath $packages -PathType Container) {
+        foreach ($package in (Get-ChildItem -LiteralPath $packages -Directory -Filter 'OpenAI.Codex_*' -ErrorAction SilentlyContinue)) {
+            foreach ($name in @('dashboard-credential.xml', 'dashboard-credential.xml.pending', 'life-os-secrets.xml')) {
+                Join-Path $package.FullName ('LocalCache\Local\ProjectLantern\' + $name)
+            }
+        }
+    }
 }
 
 function Read-LifeOsCredential {

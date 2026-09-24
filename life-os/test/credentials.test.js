@@ -21,6 +21,10 @@ function scenario(setup, action) {
     const mocks = `
 function Get-LifeOsCredentialPath { Join-Path $PSScriptRoot 'data\\dashboard.xml' }
 function Get-LifeOsLegacyPath { Join-Path $PSScriptRoot 'data\\legacy.xml' }
+function Get-LifeOsRecoveryPaths {
+  Get-LifeOsLegacyPath
+  Join-Path $PSScriptRoot 'package-cache\\dashboard.xml'
+}
 function Invoke-WebRequest {
   param($Uri, $Headers, [switch]$UseBasicParsing, $MaximumRedirection, $TimeoutSec, $ErrorAction)
   $expected = Import-Clixml (Join-Path $PSScriptRoot 'expected.xml')
@@ -97,6 +101,17 @@ test('fresh machine securely imports known deployed password and creates missing
 `, r => {
     assert.equal(r.status,0,r.output); assert.match(r.output,/Imported the existing verified/);
     assert.equal(r.read('copied.txt').trim(),'MATCH'); assert.equal(r.read('updates.txt'),null);
+  });
+});
+test('packaged-app credential is recovered when ordinary AppData files are absent', {skip:!windows}, () => {
+  check(`Save-LifeOsCredential -Credential $fixture -Path (Join-Path $PSScriptRoot 'package-cache\\dashboard.xml')`, `
+& (Join-Path $PSScriptRoot 'access.ps1') -CopyPassword
+& (Join-Path $PSScriptRoot 'initialize-access.ps1')
+& (Join-Path $PSScriptRoot 'access.ps1') -CopyPassword
+`, r => {
+    assert.equal(r.status,0,r.output); assert.match(r.output,/Recovered the existing/);
+    assert.equal(r.read('copied.txt').trim(),'MATCH'); assert.equal(r.read('updates.txt'),null);
+    assert.ok(r.read('data/dashboard.xml')); assert.equal(r.read('data/legacy.xml'),null);
   });
 });
 test('wrong deployed password is never copied or silently rotated', {skip:!windows}, () => {

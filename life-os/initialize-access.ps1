@@ -6,7 +6,7 @@ try {
     $path = Get-LifeOsCredentialPath
     $pending = $path + '.pending'
     $credential = $null
-    foreach ($candidate in @($path, $pending, (Get-LifeOsLegacyPath))) {
+    foreach ($candidate in (@($path, $pending) + @(Get-LifeOsRecoveryPaths))) {
         if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { continue }
         try {
             $existing = Read-LifeOsCredential -Path $candidate

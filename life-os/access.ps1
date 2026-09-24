@@ -6,9 +6,15 @@ try {
     $secretFile = Get-LifeOsCredentialPath
     $credential = Read-LifeOsCredential -Path $secretFile
     if (-not $credential) {
-        $legacy = Get-LifeOsLegacyPath
-        $credential = Read-LifeOsCredential -Path $legacy
-        if ($credential) { $secretFile = $legacy }
+        foreach ($candidate in (Get-LifeOsRecoveryPaths)) {
+            if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { continue }
+            try {
+                $credential = Read-LifeOsCredential -Path $candidate
+                Assert-LifeOsAuthentication -Credential $credential
+                $secretFile = $candidate
+                break
+            } catch { $credential = $null }
+        }
     }
     if (-not $credential) {
         throw "No local dashboard credential was found for '$([Security.Principal.WindowsIdentity]::GetCurrent().Name)'. Expected '$secretFile'."
